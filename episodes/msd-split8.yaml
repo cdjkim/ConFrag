@@ -1,0 +1,8 @@
+- subsets: [['msd', 0], ['msd', 4]]
+  shuffle: True
+- subsets: [['msd', 1], ['msd', 5]]
+  shuffle: True
+- subsets: [['msd', 2], ['msd', 6]]
+  shuffle: True
+- subsets: [['msd', 3], ['msd', 7]]
+  shuffle: True

@@ -1,0 +1,4 @@
+- subsets: [['imdb_wiki', 0], ['imdb_wiki', 2]]
+  shuffle: True
+- subsets: [['imdb_wiki', 1], ['imdb_wiki', 3]]
+  shuffle: True

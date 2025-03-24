@@ -1,0 +1,4 @@
+- subsets: [['afad', 0], ['afad', 2]]
+  shuffle: True
+- subsets: [['afad', 1], ['afad', 3]]
+  shuffle: True

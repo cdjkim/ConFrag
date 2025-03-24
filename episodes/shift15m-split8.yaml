@@ -1,0 +1,8 @@
+- subsets: [['shift15m', 0], ['shift15m', 4]]
+  shuffle: True
+- subsets: [['shift15m', 1], ['shift15m', 5]]
+  shuffle: True
+- subsets: [['shift15m', 2], ['shift15m', 6]]
+  shuffle: True
+- subsets: [['shift15m', 3], ['shift15m', 7]]
+  shuffle: True

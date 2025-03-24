@@ -1,0 +1,127 @@
+debug: False
+
+###########
+# Dataset #
+###########
+data_root: './data'
+data_name: 'imdb_wiki'
+batch_size: 256
+num_workers: 8
+eval_batch_size: 256
+eval_num_workers: 4
+batch_iter: 1
+
+noise:
+  type: 'gaussian_random'
+  corrupt_p: 1.0
+  std: 150
+  std_min: 1
+  std_max: 50  # 30, 50
+
+classification: True
+label_split: [4]
+cmixup:
+  active: False
+  batch_cmixup: False
+  manifold_mixup: False
+  kde_bandwidth: 1.5
+  beta_alpha: 1
+
+x_c: 3
+x_h: 128
+x_w: 128
+
+#########
+# Model #
+#########
+device: 'cuda'
+model_name: 'fragment'
+net: 'resnet18'
+feat_dim: 0 # setting feat_dim=0 uses the default value, otherwise modify the resnet arch
+
+##########################
+# Classification Helpers #
+##########################
+jitter: True
+label_coverage: 0.95
+
+#########
+# Train #
+#########
+task_epochs: 120
+
+loss: 'ce' # l1 | mse | sce | ce
+
+optimizer:
+  type: Adam
+  options:
+    lr: 0.001
+    weight_decay: 0
+
+lr_scheduler:
+  type: CosineAnnealingLR
+  options:
+    eta_min: 0
+    last_epoch: -1
+
+########
+# Eval #
+########
+eval: True
+eval_every: 1
+
+tensorboard:
+  grad: False
+
+########
+# Etc #
+########
+save_every: 1 # epochs
+save_weights: False
+save_clean_idcs: True
+save_features: False
+
+tqdm: False
+overwrite_log: True
+use_recent_identifier: False
+
+verbose: True
+
+#####################
+# Fragment Exp Flow #
+#####################
+train_expert: True # train expert and extract feature sequentially
+extract_feature: True # only extract feature
+expert_filter_dataset: True
+selective_train_regress: True
+
+expert_load: ''
+filter_load: ''
+
+##########
+# filter #
+##########
+
+# feat_space_filter
+knn_k: 5 # assert knn_k>=max(k_threshold, k_threshold_susp, knn_refurb_k)
+k_threshold: 3 # 1|3|5|odd_numb / knn_count range, use odd numbers to avoid tie
+faiss_gpu: True # True|False
+
+frag_method: "union_eta"
+
+######################
+# regressor training #
+######################
+regress_batch_size: 256
+regress_total_epochs: 120
+regress_model: 'vanilla'
+regress_net: 'resnet_regress'
+regress_loss: 'mse' # l1 | mse | sce | ce | mixed(for headpose)
+regress_warm_up: 0
+
+regress_optimizer:
+  type: Adam
+  options:
+    lr: 0.001
+
+online_filtering: True
