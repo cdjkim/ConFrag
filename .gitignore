@@ -1,0 +1,9 @@
+data
+checkpoints
+*.zip
+
+# Ignore Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
